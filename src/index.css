@@ -1,0 +1,128 @@
+@import "tailwindcss";
+
+@theme {
+  --color-paper: #f2eee6;
+  --color-paper-2: #e9e3d8;
+  --color-ink: #0a0a0a;
+  --color-ink-2: #2a2a2a;
+  --color-mute: #6f6a62;
+  --color-line: rgba(10, 10, 10, 0.16);
+  --color-line-light: rgba(242, 238, 230, 0.18);
+  --color-earth: #b8461d;
+  --color-growth: #4f5d3a;
+  --color-ochre: #c9962b;
+
+  --font-sans: "Archivo", ui-sans-serif, system-ui, sans-serif;
+  --font-serif: "Instrument Serif", Georgia, serif;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background: var(--color-paper);
+  color: var(--color-ink);
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  font-feature-settings: "ss01", "cv11";
+}
+
+::selection {
+  background: var(--color-ink);
+  color: var(--color-paper);
+}
+
+/* Editorial type scale */
+.display {
+  font-family: var(--font-sans);
+  font-weight: 600;
+  letter-spacing: -0.045em;
+  line-height: 0.88;
+  text-transform: uppercase;
+}
+.display-wide {
+  font-family: var(--font-sans);
+  font-variation-settings: "wdth" 112;
+  font-weight: 700;
+  letter-spacing: -0.03em;
+  line-height: 0.86;
+  text-transform: uppercase;
+}
+.display-narrow {
+  font-family: var(--font-sans);
+  font-variation-settings: "wdth" 72;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  line-height: 0.85;
+  text-transform: uppercase;
+}
+.serif {
+  font-family: var(--font-serif);
+  font-weight: 400;
+  letter-spacing: -0.015em;
+  line-height: 1.02;
+}
+.serif-i {
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-weight: 400;
+  letter-spacing: -0.01em;
+  line-height: 1.02;
+}
+.eyebrow {
+  font-family: var(--font-sans);
+  font-size: 0.68rem;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  font-weight: 500;
+}
+.mono-num {
+  font-variant-numeric: tabular-nums;
+}
+
+.strike {
+  position: relative;
+  display: inline-block;
+}
+.strike::after {
+  content: "";
+  position: absolute;
+  left: -0.05em;
+  right: -0.05em;
+  top: 52%;
+  height: 0.06em;
+  background: currentColor;
+  transform: rotate(-2deg);
+}
+
+.img-mono {
+  filter: grayscale(1) contrast(1.05);
+}
+
+.grid-bg {
+  background-image:
+    linear-gradient(to right, var(--color-line) 1px, transparent 1px),
+    linear-gradient(to bottom, var(--color-line) 1px, transparent 1px);
+  background-size: 8.333% 100%, 100% 25vh;
+}
+.grid-bg-dark {
+  background-image:
+    linear-gradient(to right, var(--color-line-light) 1px, transparent 1px),
+    linear-gradient(to bottom, var(--color-line-light) 1px, transparent 1px);
+  background-size: 8.333% 100%, 100% 25vh;
+}
+
+@keyframes marquee {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
+}
+.marquee {
+  animation: marquee 40s linear infinite;
+}
+
+@media print {
+  .no-print { display: none !important; }
+  section { break-after: page; }
+}
