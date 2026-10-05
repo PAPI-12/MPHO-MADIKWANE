@@ -1,0 +1,48 @@
+{
+  "benchmark_protocol": {
+    "standard_benchmark_prompt": "High-end editorial portrait photograph of a South African male model standing in a minimal contemporary studio, natural skin texture, realistic pores, subtle facial imperfections, detailed hair strands, premium fashion styling, physically believable lighting, realistic fabric texture, shallow depth of field, professional commercial photography.",
+    "standard_negative_prompt": "plastic skin, wax face, artificial smoothing, deformed hands, extra fingers, mutated limbs, bad eyes, uncanny valley, CGI render, 3d illustration, cartoon, oversaturated, blurry, low resolution, blown-out highlights",
+    "evaluation_categories": [
+      {
+        "id": "test_01_portrait",
+        "domain": "Portrait",
+        "description": "Headshot and bust portrait testing fine facial anatomy, skin pores, iris detail, catchlights, and hair strands.",
+        "prompt": "High-end editorial portrait photograph of a South African male model standing in a minimal contemporary studio, natural skin texture, realistic pores, subtle facial imperfections, detailed hair strands, premium fashion styling, physically believable lighting, realistic fabric texture, shallow depth of field, professional commercial photography, shot on 85mm lens at f/2.0.",
+        "aspect_ratio": "512x768",
+        "focus_areas": ["Skin microtexture", "Iris detail", "Eyelashes", "Natural pores", "Subtle imperfections"]
+      },
+      {
+        "id": "test_02_full_body",
+        "domain": "Full Body",
+        "description": "Full-length editorial standing pose testing anatomical proportions, hands, feet, fabric draping, and ground contact shadow.",
+        "prompt": "Full-length high fashion editorial photograph of a South African male model standing gracefully in an open concrete architectural pavilion, tailored charcoal wool overcoat, crisp pleated trousers, polished leather dress shoes. Natural diffused daylight, realistic ground contact shadows, accurate body proportions, natural relaxed hands with correct fingers, shot on 50mm f/4.0.",
+        "aspect_ratio": "512x768",
+        "focus_areas": ["Hand anatomy (5 fingers)", "Footwear and floor contact", "Fabric drape", "Overall limb proportions"]
+      },
+      {
+        "id": "test_03_environment",
+        "domain": "Environment",
+        "description": "Subject integrated into an authentic interior/exterior environment testing spatial depth, atmospheric perspective, and ambient bounce.",
+        "prompt": "Environmental documentary editorial photograph of a South African male model sitting at a minimalist reclaimed wood desk in a sunlit Johannesburg architectural studio. Bookshelves, architectural models, and large industrial steel-framed windows in soft background blur. Soft natural morning window light, realistic atmospheric dust motes, rich spatial depth, shot on 35mm f/2.0.",
+        "aspect_ratio": "768x512",
+        "focus_areas": ["Atmospheric depth", "Natural light bounce", "Interior perspective", "Background blur quality"]
+      },
+      {
+        "id": "test_04_product",
+        "domain": "Product & Detail",
+        "description": "Close-up macro of luxury fashion accessory / timepiece testing material physics, metallic reflections, and tactile textures.",
+        "prompt": "Commercial macro product photograph of a bespoke titanium wristwatch with dark textured leather strap resting on a polished dark granite pedestal. Precision studio strip softbox lighting creating razor-sharp metallic edge highlights, authentic glass crystal refraction, fine leather grain stitching, zero plastic rendering, shot on 100mm macro at f/8.0.",
+        "aspect_ratio": "768x768",
+        "focus_areas": ["Specular highlights", "Refraction", "Leather texture", "Metallic sharpness", "Edge definition"]
+      },
+      {
+        "id": "test_05_fashion",
+        "domain": "Fashion & Movement",
+        "description": "High fashion dynamic posture testing textile weave, wool/silk sheen, motion blur nuance, and sophisticated editorial styling.",
+        "prompt": "High fashion editorial campaign photograph of a South African male model caught in mid-stride across a minimalist gallery, wearing a draped camel hair coat and structured knitwear. Directional high-contrast studio strobe lighting, subtle motion flow in coat hem, tack-sharp facial features, tactile coarse wool weave, sophisticated Vogue runway aesthetic, shot on 70mm f/2.8.",
+        "aspect_ratio": "512x768",
+        "focus_areas": ["Fabric weave texture", "Textile tension", "Movement realism", "High-contrast strobe balance"]
+      }
+    ]
+  }
+}

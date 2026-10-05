@@ -1,0 +1,87 @@
+{
+  "camera_taxonomy": {
+    "sensor_formats": {
+      "medium_format": {
+        "dimensions": "53.4 x 40.0 mm (Hasselblad) / 43.8 x 32.9 mm (Fujifilm GFX)",
+        "visual_characteristics": "Ultra-smooth tonal transitions, shallower depth of field at equivalent field-of-view, extreme micro-contrast, zero plastic flattening",
+        "best_for": "Editorial, commercial campaign, beauty macro"
+      },
+      "full_frame_35mm": {
+        "dimensions": "36.0 x 24.0 mm (Leica SL2, Sony A7R V, Canon EOS R5)",
+        "visual_characteristics": "Standard photographic reference, natural perspective, balanced dynamic range",
+        "best_for": "Street, portraiture, lifestyle, documentary"
+      },
+      "cinema_super35": {
+        "dimensions": "24.89 x 18.66 mm (ARRI Alexa, RED V-Raptor)",
+        "visual_characteristics": "Filmic halation, anamorphic oval bokeh, natural film grain structure",
+        "best_for": "Cinematic narrative, dramatic visual storytelling"
+      }
+    },
+    "lenses_and_optics": {
+      "85mm_f1_4": {
+        "type": "Telephoto Portrait Prime",
+        "field_of_view": "28.5 degrees",
+        "optical_falloff": "Flattering facial compression, eliminates nose elongation, dissolves busy background into creamy bokeh",
+        "recommended_aperture": "f/2.0 to f/2.8 for tack-sharp iris and soft ear falloff"
+      },
+      "50mm_f1_2": {
+        "type": "Standard Prime",
+        "field_of_view": "46.8 degrees",
+        "optical_falloff": "Matches human visual field, natural intimate perspective",
+        "recommended_aperture": "f/1.8 for environmental context with gentle separation"
+      },
+      "35mm_f1_4": {
+        "type": "Wide Angle Documentary Prime",
+        "field_of_view": "63.4 degrees",
+        "optical_falloff": "Places subject squarely within their environment, slight dramatic perspective",
+        "recommended_aperture": "f/4.0 for deep street focus"
+      },
+      "100mm_120mm_macro": {
+        "type": "Macro Telephoto",
+        "field_of_view": "24.0 degrees (1:1 reproduction)",
+        "optical_falloff": "Extreme micro-detail of skin pores, iris striations, fabric weave, jewelry facets",
+        "recommended_aperture": "f/8.0 to f/11 to maintain sufficient depth of field"
+      }
+    },
+    "lighting_taxonomy": {
+      "rembrandt": {
+        "setup": "Key light at 45 degrees high and side, creating signature triangle of light on opposite cheek",
+        "mood": "Timeless, dramatic, dignified, authoritative"
+      },
+      "butterfly_paramount": {
+        "setup": "Key light centered directly above lens axis, casting small butterfly shadow beneath nose",
+        "mood": "High fashion, cosmetic, accentuates high cheekbones"
+      },
+      "octabox_softbox": {
+        "modifier": "120cm - 150cm octagonal softbox with double diffusion baffles",
+        "character": "Wrap-around soft transition, circular natural catchlights in pupils"
+      },
+      "rim_kicker": {
+        "modifier": "Strip softbox with honeycomb grid placed behind subject at 135 degrees",
+        "character": "Crisp hairline rim separation, outlines silhouette from dark backgrounds"
+      },
+      "natural_window_bounce": {
+        "modifier": "North-facing large frosted glass + white foam-core reflector bounce",
+        "character": "Organic, candid, zero artificial studio glare"
+      }
+    },
+    "film_stocks_and_emulsions": {
+      "kodak_portra_400": {
+        "character": "Warm neutral skin tones, subtle pastel highlight roll-off, exceptionally fine grain",
+        "ideal_lighting": "Golden hour, natural daylight, warm editorial"
+      },
+      "kodak_tri_x_400": {
+        "character": "Deep classic blacks, pronounced gritty grain, high documentary contrast",
+        "ideal_lighting": "Street photography, stark South African documentary"
+      },
+      "ilford_hp5_plus": {
+        "character": "Smooth, wide midtone latitude, understated micrograin, silver-gelatin elegance",
+        "ideal_lighting": "Classic portraiture, fine art"
+      },
+      "fujifilm_provia_100f": {
+        "character": "Ultra-sharp reversal transparency, neutral cool tones, pure clean whites",
+        "ideal_lighting": "Commercial product, architectural, high fashion"
+      }
+    }
+  }
+}

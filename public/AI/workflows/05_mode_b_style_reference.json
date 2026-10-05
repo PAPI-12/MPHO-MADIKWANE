@@ -1,0 +1,468 @@
+{
+  "title": "Mode B - Style Reference",
+  "description": "Transfers lighting, color palette, and atmosphere without altering facial identity.",
+  "target_hardware": "MacBook Neo (Apple A18 Pro - 8GB Unified Memory)",
+  "mps_optimized": true,
+  "last_node_id": 10,
+  "last_link_id": 12,
+  "nodes": [
+    {
+      "id": 1,
+      "type": "CheckpointLoaderSimple",
+      "pos": [
+        40,
+        100
+      ],
+      "size": [
+        315,
+        98
+      ],
+      "order": 0,
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "MODEL",
+          "type": "MODEL",
+          "links": [
+            1
+          ],
+          "slot_index": 0
+        },
+        {
+          "name": "CLIP",
+          "type": "CLIP",
+          "links": [
+            2,
+            3
+          ],
+          "slot_index": 1
+        },
+        {
+          "name": "VAE",
+          "type": "VAE",
+          "links": [
+            7
+          ],
+          "slot_index": 2
+        }
+      ],
+      "widgets_values": [
+        "realisticVisionV60B1_v60B1VAE.safetensors"
+      ]
+    },
+    {
+      "id": 2,
+      "type": "LoadImage",
+      "pos": [
+        40,
+        240
+      ],
+      "size": [
+        315,
+        260
+      ],
+      "order": 1,
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "IMAGE",
+          "type": "IMAGE",
+          "links": [
+            4
+          ],
+          "slot_index": 0
+        }
+      ],
+      "widgets_values": [
+        "reference_style.png",
+        "image"
+      ]
+    },
+    {
+      "id": 3,
+      "type": "CLIPVisionLoader",
+      "pos": [
+        40,
+        540
+      ],
+      "size": [
+        315,
+        60
+      ],
+      "order": 2,
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "CLIP_VISION",
+          "type": "CLIP_VISION",
+          "links": [
+            5
+          ],
+          "slot_index": 0
+        }
+      ],
+      "widgets_values": [
+        "clip_vision_vit_h.safetensors"
+      ]
+    },
+    {
+      "id": 4,
+      "type": "IPAdapterStyleTransfer",
+      "pos": [
+        400,
+        100
+      ],
+      "size": [
+        320,
+        240
+      ],
+      "order": 3,
+      "inputs": [
+        {
+          "name": "model",
+          "type": "MODEL",
+          "link": 1
+        },
+        {
+          "name": "clip_vision",
+          "type": "CLIP_VISION",
+          "link": 5
+        },
+        {
+          "name": "image",
+          "type": "IMAGE",
+          "link": 4
+        }
+      ],
+      "outputs": [
+        {
+          "name": "MODEL",
+          "type": "MODEL",
+          "links": [
+            6
+          ],
+          "slot_index": 0
+        }
+      ],
+      "widgets_values": [
+        0.65,
+        0.0,
+        1.0
+      ]
+    },
+    {
+      "id": 5,
+      "type": "CLIPTextEncode",
+      "pos": [
+        760,
+        50
+      ],
+      "size": [
+        400,
+        160
+      ],
+      "order": 4,
+      "inputs": [
+        {
+          "name": "clip",
+          "type": "CLIP",
+          "link": 2
+        }
+      ],
+      "outputs": [
+        {
+          "name": "CONDITIONING",
+          "type": "CONDITIONING",
+          "links": [
+            8
+          ],
+          "slot_index": 0
+        }
+      ],
+      "widgets_values": [
+        "Cinematic editorial photograph of a South African male model, capturing the distinct color grading, lighting temperature, and contrast atmosphere of the style reference, shot on 50mm f/1.8."
+      ]
+    },
+    {
+      "id": 6,
+      "type": "CLIPTextEncode",
+      "pos": [
+        760,
+        240
+      ],
+      "size": [
+        400,
+        140
+      ],
+      "order": 5,
+      "inputs": [
+        {
+          "name": "clip",
+          "type": "CLIP",
+          "link": 3
+        }
+      ],
+      "outputs": [
+        {
+          "name": "CONDITIONING",
+          "type": "CONDITIONING",
+          "links": [
+            9
+          ],
+          "slot_index": 0
+        }
+      ],
+      "widgets_values": [
+        "plastic, waxy, cartoon, oversaturated, blown out, noisy"
+      ]
+    },
+    {
+      "id": 7,
+      "type": "EmptyLatentImage",
+      "pos": [
+        760,
+        420
+      ],
+      "size": [
+        315,
+        106
+      ],
+      "order": 6,
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "LATENT",
+          "type": "LATENT",
+          "links": [
+            10
+          ],
+          "slot_index": 0
+        }
+      ],
+      "widgets_values": [
+        512,
+        768,
+        1
+      ]
+    },
+    {
+      "id": 8,
+      "type": "KSampler",
+      "pos": [
+        1200,
+        100
+      ],
+      "size": [
+        315,
+        262
+      ],
+      "order": 7,
+      "inputs": [
+        {
+          "name": "model",
+          "type": "MODEL",
+          "link": 6
+        },
+        {
+          "name": "positive",
+          "type": "CONDITIONING",
+          "link": 8
+        },
+        {
+          "name": "negative",
+          "type": "CONDITIONING",
+          "link": 9
+        },
+        {
+          "name": "latent_image",
+          "type": "LATENT",
+          "link": 10
+        }
+      ],
+      "outputs": [
+        {
+          "name": "LATENT",
+          "type": "LATENT",
+          "links": [
+            11
+          ],
+          "slot_index": 0
+        }
+      ],
+      "widgets_values": [
+        777,
+        "randomize",
+        26,
+        5.0,
+        "dpmpp_2m",
+        "karras",
+        1.0
+      ]
+    },
+    {
+      "id": 9,
+      "type": "VAEDecode",
+      "pos": [
+        1550,
+        100
+      ],
+      "size": [
+        210,
+        46
+      ],
+      "order": 8,
+      "inputs": [
+        {
+          "name": "samples",
+          "type": "LATENT",
+          "link": 11
+        },
+        {
+          "name": "vae",
+          "type": "VAE",
+          "link": 7
+        }
+      ],
+      "outputs": [
+        {
+          "name": "IMAGE",
+          "type": "IMAGE",
+          "links": [
+            12
+          ],
+          "slot_index": 0
+        }
+      ],
+      "widgets_values": []
+    },
+    {
+      "id": 10,
+      "type": "SaveImage",
+      "pos": [
+        1790,
+        100
+      ],
+      "size": [
+        360,
+        440
+      ],
+      "order": 9,
+      "inputs": [
+        {
+          "name": "images",
+          "type": "IMAGE",
+          "link": 12
+        }
+      ],
+      "outputs": [],
+      "widgets_values": [
+        "MacBookNeo_ModeB_Style"
+      ]
+    }
+  ],
+  "links": [
+    [
+      1,
+      1,
+      0,
+      4,
+      0,
+      "MODEL"
+    ],
+    [
+      2,
+      1,
+      1,
+      5,
+      0,
+      "CLIP"
+    ],
+    [
+      3,
+      1,
+      1,
+      6,
+      0,
+      "CLIP"
+    ],
+    [
+      4,
+      2,
+      0,
+      4,
+      2,
+      "IMAGE"
+    ],
+    [
+      5,
+      3,
+      0,
+      4,
+      1,
+      "CLIP_VISION"
+    ],
+    [
+      6,
+      4,
+      0,
+      8,
+      0,
+      "MODEL"
+    ],
+    [
+      7,
+      1,
+      2,
+      9,
+      1,
+      "VAE"
+    ],
+    [
+      8,
+      5,
+      0,
+      8,
+      1,
+      "CONDITIONING"
+    ],
+    [
+      9,
+      6,
+      0,
+      8,
+      2,
+      "CONDITIONING"
+    ],
+    [
+      10,
+      7,
+      0,
+      8,
+      3,
+      "LATENT"
+    ],
+    [
+      11,
+      8,
+      0,
+      9,
+      0,
+      "LATENT"
+    ],
+    [
+      12,
+      9,
+      0,
+      10,
+      0,
+      "IMAGE"
+    ]
+  ],
+  "groups": [],
+  "config": {},
+  "extra": {
+    "author": "Mpho Madikwane Engineering System",
+    "date": "2026-10-05"
+  },
+  "version": 0.4
+}

@@ -1,0 +1,408 @@
+{
+  "title": "Personal LoRA Workflow",
+  "description": "Applies trained lightweight personal adapter to photorealistic base model.",
+  "target_hardware": "MacBook Neo (Apple A18 Pro - 8GB Unified Memory)",
+  "mps_optimized": true,
+  "last_node_id": 8,
+  "last_link_id": 11,
+  "nodes": [
+    {
+      "id": 1,
+      "type": "CheckpointLoaderSimple",
+      "pos": [
+        40,
+        100
+      ],
+      "size": [
+        315,
+        98
+      ],
+      "order": 0,
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "MODEL",
+          "type": "MODEL",
+          "links": [
+            1
+          ],
+          "slot_index": 0
+        },
+        {
+          "name": "CLIP",
+          "type": "CLIP",
+          "links": [
+            2
+          ],
+          "slot_index": 1
+        },
+        {
+          "name": "VAE",
+          "type": "VAE",
+          "links": [
+            7
+          ],
+          "slot_index": 2
+        }
+      ],
+      "widgets_values": [
+        "realisticVisionV60B1_v60B1VAE.safetensors"
+      ]
+    },
+    {
+      "id": 2,
+      "type": "LoraLoader",
+      "pos": [
+        400,
+        100
+      ],
+      "size": [
+        315,
+        126
+      ],
+      "order": 1,
+      "inputs": [
+        {
+          "name": "model",
+          "type": "MODEL",
+          "link": 1
+        },
+        {
+          "name": "clip",
+          "type": "CLIP",
+          "link": 2
+        }
+      ],
+      "outputs": [
+        {
+          "name": "MODEL",
+          "type": "MODEL",
+          "links": [
+            3
+          ],
+          "slot_index": 0
+        },
+        {
+          "name": "CLIP",
+          "type": "CLIP",
+          "links": [
+            4,
+            5
+          ],
+          "slot_index": 1
+        }
+      ],
+      "widgets_values": [
+        "mpho_madikwane_v1.safetensors",
+        0.85,
+        0.85
+      ]
+    },
+    {
+      "id": 3,
+      "type": "CLIPTextEncode",
+      "pos": [
+        750,
+        50
+      ],
+      "size": [
+        420,
+        170
+      ],
+      "order": 2,
+      "inputs": [
+        {
+          "name": "clip",
+          "type": "CLIP",
+          "link": 4
+        }
+      ],
+      "outputs": [
+        {
+          "name": "CONDITIONING",
+          "type": "CONDITIONING",
+          "links": [
+            6
+          ],
+          "slot_index": 0
+        }
+      ],
+      "widgets_values": [
+        "photo of mpho_m man, high-end editorial portrait standing in modern architecture pavilion, wearing structured wool coat, natural skin texture, visible pores, subtle facial imperfections, detailed hair strands, studio octabox lighting with subtle rim kicker, shot on 85mm f/2.0, master commercial photography."
+      ]
+    },
+    {
+      "id": 4,
+      "type": "CLIPTextEncode",
+      "pos": [
+        750,
+        250
+      ],
+      "size": [
+        420,
+        150
+      ],
+      "order": 3,
+      "inputs": [
+        {
+          "name": "clip",
+          "type": "CLIP",
+          "link": 5
+        }
+      ],
+      "outputs": [
+        {
+          "name": "CONDITIONING",
+          "type": "CONDITIONING",
+          "links": [
+            8
+          ],
+          "slot_index": 0
+        }
+      ],
+      "widgets_values": [
+        "plastic skin, waxy face, deformed, bad eyes, extra fingers, cartoon, 3d, blurry"
+      ]
+    },
+    {
+      "id": 5,
+      "type": "EmptyLatentImage",
+      "pos": [
+        750,
+        440
+      ],
+      "size": [
+        315,
+        106
+      ],
+      "order": 4,
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "LATENT",
+          "type": "LATENT",
+          "links": [
+            9
+          ],
+          "slot_index": 0
+        }
+      ],
+      "widgets_values": [
+        512,
+        768,
+        1
+      ]
+    },
+    {
+      "id": 6,
+      "type": "KSampler",
+      "pos": [
+        1210,
+        100
+      ],
+      "size": [
+        315,
+        262
+      ],
+      "order": 5,
+      "inputs": [
+        {
+          "name": "model",
+          "type": "MODEL",
+          "link": 3
+        },
+        {
+          "name": "positive",
+          "type": "CONDITIONING",
+          "link": 6
+        },
+        {
+          "name": "negative",
+          "type": "CONDITIONING",
+          "link": 8
+        },
+        {
+          "name": "latent_image",
+          "type": "LATENT",
+          "link": 9
+        }
+      ],
+      "outputs": [
+        {
+          "name": "LATENT",
+          "type": "LATENT",
+          "links": [
+            10
+          ],
+          "slot_index": 0
+        }
+      ],
+      "widgets_values": [
+        842,
+        "randomize",
+        28,
+        5.5,
+        "dpmpp_2m",
+        "karras",
+        1.0
+      ]
+    },
+    {
+      "id": 7,
+      "type": "VAEDecode",
+      "pos": [
+        1560,
+        100
+      ],
+      "size": [
+        210,
+        46
+      ],
+      "order": 6,
+      "inputs": [
+        {
+          "name": "samples",
+          "type": "LATENT",
+          "link": 10
+        },
+        {
+          "name": "vae",
+          "type": "VAE",
+          "link": 7
+        }
+      ],
+      "outputs": [
+        {
+          "name": "IMAGE",
+          "type": "IMAGE",
+          "links": [
+            11
+          ],
+          "slot_index": 0
+        }
+      ],
+      "widgets_values": []
+    },
+    {
+      "id": 8,
+      "type": "SaveImage",
+      "pos": [
+        1800,
+        100
+      ],
+      "size": [
+        360,
+        440
+      ],
+      "order": 7,
+      "inputs": [
+        {
+          "name": "images",
+          "type": "IMAGE",
+          "link": 11
+        }
+      ],
+      "outputs": [],
+      "widgets_values": [
+        "MacBookNeo_Personal_LoRA"
+      ]
+    }
+  ],
+  "links": [
+    [
+      1,
+      1,
+      0,
+      2,
+      0,
+      "MODEL"
+    ],
+    [
+      2,
+      1,
+      1,
+      2,
+      1,
+      "CLIP"
+    ],
+    [
+      3,
+      2,
+      0,
+      6,
+      0,
+      "MODEL"
+    ],
+    [
+      4,
+      2,
+      1,
+      3,
+      0,
+      "CLIP"
+    ],
+    [
+      5,
+      2,
+      1,
+      4,
+      0,
+      "CLIP"
+    ],
+    [
+      6,
+      3,
+      0,
+      6,
+      1,
+      "CONDITIONING"
+    ],
+    [
+      7,
+      1,
+      2,
+      7,
+      1,
+      "VAE"
+    ],
+    [
+      8,
+      4,
+      0,
+      6,
+      2,
+      "CONDITIONING"
+    ],
+    [
+      9,
+      5,
+      0,
+      6,
+      3,
+      "LATENT"
+    ],
+    [
+      10,
+      6,
+      0,
+      7,
+      0,
+      "LATENT"
+    ],
+    [
+      11,
+      7,
+      0,
+      8,
+      0,
+      "IMAGE"
+    ]
+  ],
+  "groups": [],
+  "config": {},
+  "extra": {
+    "author": "Mpho Madikwane Engineering System",
+    "date": "2026-10-05"
+  },
+  "version": 0.4
+}

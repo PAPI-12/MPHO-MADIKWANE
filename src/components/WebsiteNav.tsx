@@ -10,6 +10,7 @@ export function WebsiteNav() {
     { to: "/impact", label: "Impact" },
     { to: "/partners", label: "Partners" },
     { to: "/contact", label: "Contact" },
+    { to: "/studio", label: "AI Studio" },
   ];
   return (
     <nav className="no-print fixed left-0 right-0 top-0 z-50 border-b border-ink/20 bg-paper/80 backdrop-blur-md">
@@ -56,6 +57,7 @@ export function Footer() {
               <li><Link to="/programmes" className="opacity-60 hover:opacity-100">Programmes</Link></li>
               <li><Link to="/impact" className="opacity-60 hover:opacity-100">Impact</Link></li>
               <li><Link to="/partners" className="opacity-60 hover:opacity-100">Partners</Link></li>
+              <li><Link to="/studio" className="text-earth font-bold opacity-90 hover:opacity-100">AI Studio (MacBook Neo)</Link></li>
             </ul>
           </div>
           <div className="col-span-6 md:col-span-3 md:col-start-10">

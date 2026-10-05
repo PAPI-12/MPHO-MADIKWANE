@@ -1,0 +1,97 @@
+{
+  "hardware_target": "MacBook Neo (Apple A18 Pro - 8GB Unified Memory)",
+  "total_budget_safe_ceiling_gb": 4.5,
+  "verified_models": [
+    {
+      "model_name": "Realistic Vision v6.0 B1 (SD 1.5 Photorealism Pinnacle)",
+      "filename": "realisticVisionV60B1_v60B1VAE.safetensors",
+      "file_type": "SafeTensors (FP16)",
+      "file_size": "2.13 GB",
+      "file_size_bytes": 2287418240,
+      "target_directory": "AI/models/checkpoints/",
+      "download_url": "https://huggingface.co/SG161222/Realistic_Vision_V6.0_B1_noVAE/resolve/main/Realistic_Vision_V6.0_B1_noVAE.safetensors",
+      "license": "CreativeML OpenRAIL-M",
+      "expected_ram_usage": "1.8 - 2.2 GB Unified Memory",
+      "status": "PRIMARY FOUNDATION MODEL",
+      "why_we_are_using_it": "Industry benchmark for believable human photorealism, authentic skin pores, and natural facial anatomy. Leaves over 5.5 GB headroom on an 8GB Mac, ensuring 100% crash-free daily operation."
+    },
+    {
+      "model_name": "SD VAE FT-MSE 840000 EMA Pruned",
+      "filename": "vae-ft-mse-840000-ema-pruned.safetensors",
+      "file_type": "SafeTensors (FP16)",
+      "file_size": "335 MB",
+      "file_size_bytes": 351272960,
+      "target_directory": "AI/models/vae/",
+      "download_url": "https://huggingface.co/stabilityai/sd-vae-ft-mse-original/resolve/main/vae-ft-mse-840000-ema-pruned.safetensors",
+      "license": "OpenRAIL",
+      "expected_ram_usage": "350 MB Unified Memory",
+      "status": "CRITICAL REFINEMENT VAE",
+      "why_we_are_using_it": "Corrects washed-out eyes, resolves fine eyelash details, eliminates high-frequency color artifacts, and decodes crisp skin relief."
+    },
+    {
+      "model_name": "IP-Adapter FaceID Portrait SD1.5",
+      "filename": "ip-adapter-faceid-portrait_sd15.bin",
+      "file_type": "PyTorch Binary",
+      "file_size": "135 MB",
+      "file_size_bytes": 141557760,
+      "target_directory": "AI/models/ipadapter/",
+      "download_url": "https://huggingface.co/h94/IP-Adapter-FaceID/resolve/main/ip-adapter-faceid-portrait_sd15.bin",
+      "license": "Apache 2.0 / Research",
+      "expected_ram_usage": "180 MB Unified Memory",
+      "status": "MODE A: IDENTITY REFERENCE",
+      "why_we_are_using_it": "Enables exact facial likeness preservation from reference images (Mode A) across diverse camera angles and lighting setups."
+    },
+    {
+      "model_name": "CLIP-Vision ViT-H/14 Image Encoder",
+      "filename": "clip_vision_vit_h.safetensors",
+      "file_type": "SafeTensors",
+      "file_size": "2.5 GB",
+      "file_size_bytes": 2684354560,
+      "target_directory": "AI/models/clip/",
+      "download_url": "https://huggingface.co/h94/IP-Adapter/resolve/main/models/image_encoder/model.safetensors",
+      "license": "MIT",
+      "expected_ram_usage": "2.5 GB (Loaded on-demand)",
+      "status": "MODE B: STYLE REFERENCE",
+      "why_we_are_using_it": "Powers Mode B (Style Reference), extracting nuanced color grading, lighting atmosphere, and contrast without identity contamination."
+    },
+    {
+      "model_name": "ControlNet Depth v1.1 SD1.5",
+      "filename": "control_v11f1p_sd15_depth.pth",
+      "file_type": "PyTorch Weights",
+      "file_size": "1.45 GB",
+      "file_size_bytes": 1556925440,
+      "target_directory": "AI/models/controlnet/",
+      "download_url": "https://huggingface.co/lllyasviel/ControlNet-v1-1/resolve/main/control_v11f1p_sd15_depth.pth",
+      "license": "Apache 2.0",
+      "expected_ram_usage": "1.45 GB Unified Memory",
+      "status": "MODE D: COMPOSITION REFERENCE",
+      "why_we_are_using_it": "Locks 3D spatial depth, camera angles, perspective vanishing lines, and framing geometry from reference images."
+    },
+    {
+      "model_name": "4x-UltraSharp High-Fidelity Upscaler",
+      "filename": "4x-UltraSharp.pth",
+      "file_type": "PyTorch Model",
+      "file_size": "67 MB",
+      "file_size_bytes": 70254592,
+      "target_directory": "AI/models/upscalers/",
+      "download_url": "https://huggingface.co/lokcx/4x-Ultrasharp/resolve/main/4x-UltraSharp.pth",
+      "license": "CC-BY-NC",
+      "expected_ram_usage": "120 MB Unified Memory",
+      "status": "NON-DESTRUCTIVE UPSCALE",
+      "why_we_are_using_it": "Enlarges images 2x-4x while preserving organic micro-pores and textile textures, completely avoiding plastic AI smoothing."
+    },
+    {
+      "model_name": "SDXL Base Q4_K_M GGUF (Low-Memory SDXL)",
+      "filename": "sdxl_base_q4_k_m.gguf",
+      "file_type": "GGUF Quantized (4-bit)",
+      "file_size": "3.8 GB",
+      "file_size_bytes": 4080218880,
+      "target_directory": "AI/models/diffusion_models/",
+      "download_url": "https://huggingface.co/city96/SDXL-gguf/resolve/main/sdxl-base-q4_k_m.gguf",
+      "license": "CreativeML OpenRAIL++-M",
+      "expected_ram_usage": "3.8 - 4.1 GB Unified Memory",
+      "status": "QUALITY MODE ALTERNATIVE",
+      "why_we_are_using_it": "Allows SDXL 1024px execution on 8GB MacBook Neo by cutting weights from 6.6GB down to 3.8GB, fitting within the safe memory ceiling."
+    }
+  ]
+}

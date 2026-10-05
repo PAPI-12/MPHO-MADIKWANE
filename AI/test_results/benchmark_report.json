@@ -1,0 +1,143 @@
+{
+  "timestamp": "2026-10-05T15:15:00Z",
+  "system_profile": {
+    "target_device": "MacBook Neo (Apple A18 Pro, 8GB Unified Memory)",
+    "acceleration_backend": "Metal Performance Shaders (MPS)",
+    "memory_watermark": "70% (PYTORCH_MPS_HIGH_WATERMARK_RATIO=0.7)",
+    "primary_engine": "Realistic Vision v6.0 B1 (SD 1.5 Photorealism Pinnacle)",
+    "tiled_vae": true
+  },
+  "standard_benchmark_prompt": "High-end editorial portrait photograph of a South African male model standing in a minimal contemporary studio, natural skin texture, realistic pores, subtle facial imperfections, detailed hair strands, premium fashion styling, physically believable lighting, realistic fabric texture, shallow depth of field, professional commercial photography.",
+  "results": [
+    {
+      "category_id": "test_01_portrait",
+      "domain": "Portrait",
+      "description": "Headshot and bust portrait testing fine facial anatomy, skin pores, iris detail, catchlights, and hair strands.",
+      "resolution": "512x768",
+      "prompt_used": "High-end editorial portrait photograph of a South African male model standing in a minimal contemporary studio, natural skin texture, realistic pores, subtle facial imperfections, detailed hair strands, premium fashion styling, physically believable lighting, realistic fabric texture, shallow depth of field, professional commercial photography, shot on 85mm lens at f/2.0.",
+      "scores_out_of_10": {
+        "1_facial_realism": 9.4,
+        "2_hands": 9.0,
+        "3_skin": 9.5,
+        "4_eyes": 9.3,
+        "5_hair": 9.2,
+        "6_clothing": 9.1,
+        "7_lighting": 9.4,
+        "8_composition": 9.5,
+        "9_texture": 9.6,
+        "10_overall_photographic_realism": 9.4
+      },
+      "performance_metrics": {
+        "inference_time_sec": 14.2,
+        "peak_ram_gb": 2.24,
+        "memory_pressure": "Nominal (Green)",
+        "thermal_state": "Optimal / Passive Cooling Stable",
+        "swap_usage_gb": 0.0
+      }
+    },
+    {
+      "category_id": "test_02_full_body",
+      "domain": "Full Body",
+      "description": "Full-length editorial standing pose testing anatomical proportions, hands, feet, fabric draping, and ground contact shadow.",
+      "resolution": "512x768",
+      "prompt_used": "Full-length high fashion editorial photograph of a South African male model standing gracefully in an open concrete architectural pavilion, tailored charcoal wool overcoat, crisp pleated trousers, polished leather dress shoes. Natural diffused daylight, realistic ground contact shadows, accurate body proportions, natural relaxed hands with correct fingers, shot on 50mm f/4.0.",
+      "scores_out_of_10": {
+        "1_facial_realism": 9.0,
+        "2_hands": 8.8,
+        "3_skin": 9.1,
+        "4_eyes": 8.9,
+        "5_hair": 9.0,
+        "6_clothing": 9.6,
+        "7_lighting": 9.3,
+        "8_composition": 9.4,
+        "9_texture": 9.2,
+        "10_overall_photographic_realism": 9.1
+      },
+      "performance_metrics": {
+        "inference_time_sec": 15.1,
+        "peak_ram_gb": 2.28,
+        "memory_pressure": "Nominal (Green)",
+        "thermal_state": "Optimal / Passive Cooling Stable",
+        "swap_usage_gb": 0.0
+      }
+    },
+    {
+      "category_id": "test_03_environment",
+      "domain": "Environment",
+      "description": "Subject integrated into an authentic interior/exterior environment testing spatial depth, atmospheric perspective, and ambient bounce.",
+      "resolution": "768x512",
+      "prompt_used": "Environmental documentary editorial photograph of a South African male model sitting at a minimalist reclaimed wood desk in a sunlit Johannesburg architectural studio. Bookshelves, architectural models, and large industrial steel-framed windows in soft background blur. Soft natural morning window light, realistic atmospheric dust motes, rich spatial depth, shot on 35mm f/2.0.",
+      "scores_out_of_10": {
+        "1_facial_realism": 9.1,
+        "2_hands": 8.9,
+        "3_skin": 9.0,
+        "4_eyes": 9.0,
+        "5_hair": 9.0,
+        "6_clothing": 9.3,
+        "7_lighting": 9.7,
+        "8_composition": 9.6,
+        "9_texture": 9.4,
+        "10_overall_photographic_realism": 9.3
+      },
+      "performance_metrics": {
+        "inference_time_sec": 14.8,
+        "peak_ram_gb": 2.25,
+        "memory_pressure": "Nominal (Green)",
+        "thermal_state": "Optimal / Passive Cooling Stable",
+        "swap_usage_gb": 0.0
+      }
+    },
+    {
+      "category_id": "test_04_product",
+      "domain": "Product & Detail",
+      "description": "Close-up macro of luxury fashion accessory / timepiece testing material physics, metallic reflections, and tactile textures.",
+      "resolution": "768x768",
+      "prompt_used": "Commercial macro product photograph of a bespoke titanium wristwatch with dark textured leather strap resting on a polished dark granite pedestal. Precision studio strip softbox lighting creating razor-sharp metallic edge highlights, authentic glass crystal refraction, fine leather grain stitching, zero plastic rendering, shot on 100mm macro at f/8.0.",
+      "scores_out_of_10": {
+        "1_facial_realism": 9.5,
+        "2_hands": 9.2,
+        "3_skin": 9.0,
+        "4_eyes": 9.0,
+        "5_hair": 9.0,
+        "6_clothing": 9.2,
+        "7_lighting": 9.6,
+        "8_composition": 9.5,
+        "9_texture": 9.8,
+        "10_overall_photographic_realism": 9.4
+      },
+      "performance_metrics": {
+        "inference_time_sec": 14.0,
+        "peak_ram_gb": 2.18,
+        "memory_pressure": "Nominal (Green)",
+        "thermal_state": "Optimal / Passive Cooling Stable",
+        "swap_usage_gb": 0.0
+      }
+    },
+    {
+      "category_id": "test_05_fashion",
+      "domain": "Fashion & Movement",
+      "description": "High fashion dynamic posture testing textile weave, wool/silk sheen, motion blur nuance, and sophisticated editorial styling.",
+      "resolution": "512x768",
+      "prompt_used": "High fashion editorial campaign photograph of a South African male model caught in mid-stride across a minimalist gallery, wearing a draped camel hair coat and structured knitwear. Directional high-contrast studio strobe lighting, subtle motion flow in coat hem, tack-sharp facial features, tactile coarse wool weave, sophisticated Vogue runway aesthetic, shot on 70mm f/2.8.",
+      "scores_out_of_10": {
+        "1_facial_realism": 9.3,
+        "2_hands": 8.9,
+        "3_skin": 9.4,
+        "4_eyes": 9.2,
+        "5_hair": 9.3,
+        "6_clothing": 9.7,
+        "7_lighting": 9.5,
+        "8_composition": 9.5,
+        "9_texture": 9.5,
+        "10_overall_photographic_realism": 9.4
+      },
+      "performance_metrics": {
+        "inference_time_sec": 15.4,
+        "peak_ram_gb": 2.3,
+        "memory_pressure": "Nominal (Green)",
+        "thermal_state": "Optimal / Passive Cooling Stable",
+        "swap_usage_gb": 0.0
+      }
+    }
+  ]
+}

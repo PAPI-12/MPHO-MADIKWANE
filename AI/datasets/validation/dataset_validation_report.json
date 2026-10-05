@@ -1,0 +1,44 @@
+{
+  "raw_image_count": 4,
+  "processed_count": 3,
+  "rejected_corrupt": 0,
+  "rejected_duplicates": 1,
+  "rejected_low_quality": 0,
+  "duplicate_pairs": [
+    {
+      "file": "sample_01_duplicate.jpg",
+      "duplicate_of": "sample_01.jpg",
+      "distance": 0
+    }
+  ],
+  "processed_images": [
+    {
+      "original_file": "sample_01.jpg",
+      "processed_file": "mpho_m_001_portrait_2x3.png",
+      "original_dimensions": "1200x1600",
+      "processed_dimensions": "512x768",
+      "bucket": "portrait_2x3",
+      "sharpness_score": 63.76,
+      "caption": "photo of mpho_m man, medium close-up portrait, natural soft directional window light, subtle fill shadow, 85mm focal length, f/2.0 aperture, natural optical falloff, authentic skin microtexture, visible pores, subtle natural imperfections, sharp fabric weave, neutral contemporary backdrop, high-end editorial commercial photography"
+    },
+    {
+      "original_file": "sample_02.jpg",
+      "processed_file": "mpho_m_003_portrait_2x3.png",
+      "original_dimensions": "1200x1600",
+      "processed_dimensions": "512x768",
+      "bucket": "portrait_2x3",
+      "sharpness_score": 57.72,
+      "caption": "photo of mpho_m man, three-quarter framing, overcast highveld daylight, clean diffused highlights, 70mm focal length, f/1.8 aperture, cinematic shallow depth of field, authentic skin microtexture, visible pores, subtle natural imperfections, sharp fabric weave, neutral contemporary backdrop, high-end editorial commercial photography"
+    },
+    {
+      "original_file": "sample_03.jpg",
+      "processed_file": "mpho_m_004_portrait_2x3.png",
+      "original_dimensions": "1200x1600",
+      "processed_dimensions": "512x768",
+      "bucket": "portrait_2x3",
+      "sharpness_score": 59.1,
+      "caption": "photo of mpho_m man, candid profile, minimalist rim kicker lighting with deep neutral backdrop, 85mm focal length, f/2.0 aperture, natural optical falloff, authentic skin microtexture, visible pores, subtle natural imperfections, sharp fabric weave, neutral contemporary backdrop, high-end editorial commercial photography"
+    }
+  ],
+  "warnings": []
+}

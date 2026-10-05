@@ -1,0 +1,443 @@
+{
+  "title": "Performance Profile: Low-Memory Mode (Peak RAM < 2.4 GB)",
+  "description": "Capped batch size, strictly 512x768, tiled VAE, zero swap thrashing.",
+  "target_hardware": "MacBook Neo (Apple A18 Pro - 8GB Unified Memory)",
+  "mps_optimized": true,
+  "last_node_id": 9,
+  "last_link_id": 10,
+  "nodes": [
+    {
+      "id": 1,
+      "type": "CheckpointLoaderSimple",
+      "pos": [
+        40,
+        100
+      ],
+      "size": [
+        315,
+        98
+      ],
+      "order": 0,
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "MODEL",
+          "type": "MODEL",
+          "links": [
+            1
+          ],
+          "slot_index": 0
+        },
+        {
+          "name": "CLIP",
+          "type": "CLIP",
+          "links": [
+            2
+          ],
+          "slot_index": 1
+        },
+        {
+          "name": "VAE",
+          "type": "VAE",
+          "links": [],
+          "slot_index": 2
+        }
+      ],
+      "widgets_values": [
+        "realisticVisionV60B1_v60B1VAE.safetensors"
+      ]
+    },
+    {
+      "id": 2,
+      "type": "VAELoader",
+      "pos": [
+        40,
+        250
+      ],
+      "size": [
+        315,
+        58
+      ],
+      "order": 1,
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "VAE",
+          "type": "VAE",
+          "links": [
+            3
+          ],
+          "slot_index": 0
+        }
+      ],
+      "widgets_values": [
+        "vae-ft-mse-840000-ema-pruned.safetensors"
+      ]
+    },
+    {
+      "id": 3,
+      "type": "CLIPSetLastLayer",
+      "pos": [
+        400,
+        80
+      ],
+      "size": [
+        280,
+        58
+      ],
+      "order": 2,
+      "inputs": [
+        {
+          "name": "clip",
+          "type": "CLIP",
+          "link": 2
+        }
+      ],
+      "outputs": [
+        {
+          "name": "CLIP",
+          "type": "CLIP",
+          "links": [
+            4,
+            5
+          ],
+          "slot_index": 0
+        }
+      ],
+      "widgets_values": [
+        -1
+      ]
+    },
+    {
+      "id": 4,
+      "type": "CLIPTextEncode",
+      "pos": [
+        400,
+        180
+      ],
+      "size": [
+        440,
+        180
+      ],
+      "order": 3,
+      "inputs": [
+        {
+          "name": "clip",
+          "type": "CLIP",
+          "link": 4
+        }
+      ],
+      "outputs": [
+        {
+          "name": "CONDITIONING",
+          "type": "CONDITIONING",
+          "links": [
+            6
+          ],
+          "slot_index": 0
+        }
+      ],
+      "widgets_values": [
+        "Master commercial studio photograph of a young South African creative director, Hasselblad H6D-100c, HC 100mm f/2.2 lens at f/2.8, ISO 64. Diffused Broncolor beauty dish with 2:1 fill ratio. Tactile dermal micro-texture, visible pores, discrete iris striations, natural catchlights, tailored linen jacket with crisp weave, subtle film grain."
+      ]
+    },
+    {
+      "id": 5,
+      "type": "CLIPTextEncode",
+      "pos": [
+        400,
+        400
+      ],
+      "size": [
+        440,
+        160
+      ],
+      "order": 4,
+      "inputs": [
+        {
+          "name": "clip",
+          "type": "CLIP",
+          "link": 5
+        }
+      ],
+      "outputs": [
+        {
+          "name": "CONDITIONING",
+          "type": "CONDITIONING",
+          "links": [
+            7
+          ],
+          "slot_index": 0
+        }
+      ],
+      "widgets_values": [
+        "plastic skin, waxy appearance, airbrushed mannequin, mutated hands, deformed fingers, extra limbs, bad eyes, crossed eyes, oversaturated colors, CGI, 3D render, digital illustration, watermark, low resolution, blown highlights"
+      ]
+    },
+    {
+      "id": 6,
+      "type": "EmptyLatentImage",
+      "pos": [
+        400,
+        600
+      ],
+      "size": [
+        315,
+        106
+      ],
+      "order": 5,
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "LATENT",
+          "type": "LATENT",
+          "links": [
+            8
+          ],
+          "slot_index": 0
+        }
+      ],
+      "widgets_values": [
+        512,
+        768,
+        1
+      ]
+    },
+    {
+      "id": 7,
+      "type": "KSampler",
+      "pos": [
+        890,
+        120
+      ],
+      "size": [
+        315,
+        262
+      ],
+      "order": 6,
+      "inputs": [
+        {
+          "name": "model",
+          "type": "MODEL",
+          "link": 1
+        },
+        {
+          "name": "positive",
+          "type": "CONDITIONING",
+          "link": 6
+        },
+        {
+          "name": "negative",
+          "type": "CONDITIONING",
+          "link": 7
+        },
+        {
+          "name": "latent_image",
+          "type": "LATENT",
+          "link": 8
+        }
+      ],
+      "outputs": [
+        {
+          "name": "LATENT",
+          "type": "LATENT",
+          "links": [
+            9
+          ],
+          "slot_index": 0
+        }
+      ],
+      "widgets_values": [
+        108,
+        "randomize",
+        28,
+        5.5,
+        "dpmpp_2m",
+        "karras",
+        1.0
+      ]
+    },
+    {
+      "id": 8,
+      "type": "VAEDecodeTiled",
+      "pos": [
+        1250,
+        120
+      ],
+      "size": [
+        230,
+        80
+      ],
+      "order": 7,
+      "inputs": [
+        {
+          "name": "samples",
+          "type": "LATENT",
+          "link": 9
+        },
+        {
+          "name": "vae",
+          "type": "VAE",
+          "link": 3
+        }
+      ],
+      "outputs": [
+        {
+          "name": "IMAGE",
+          "type": "IMAGE",
+          "links": [
+            10
+          ],
+          "slot_index": 0
+        }
+      ],
+      "widgets_values": [
+        512
+      ]
+    },
+    {
+      "id": 9,
+      "type": "SaveImage",
+      "pos": [
+        1520,
+        120
+      ],
+      "size": [
+        380,
+        460
+      ],
+      "order": 8,
+      "inputs": [
+        {
+          "name": "images",
+          "type": "IMAGE",
+          "link": 10
+        }
+      ],
+      "outputs": [],
+      "widgets_values": [
+        "MacBookNeo_Pro_Modular"
+      ]
+    }
+  ],
+  "links": [
+    [
+      1,
+      1,
+      0,
+      7,
+      0,
+      "MODEL"
+    ],
+    [
+      2,
+      1,
+      1,
+      3,
+      0,
+      "CLIP"
+    ],
+    [
+      3,
+      2,
+      0,
+      8,
+      1,
+      "VAE"
+    ],
+    [
+      4,
+      3,
+      0,
+      4,
+      0,
+      "CLIP"
+    ],
+    [
+      5,
+      3,
+      0,
+      5,
+      0,
+      "CLIP"
+    ],
+    [
+      6,
+      4,
+      0,
+      7,
+      1,
+      "CONDITIONING"
+    ],
+    [
+      7,
+      5,
+      0,
+      7,
+      2,
+      "CONDITIONING"
+    ],
+    [
+      8,
+      6,
+      0,
+      7,
+      3,
+      "LATENT"
+    ],
+    [
+      9,
+      7,
+      0,
+      8,
+      0,
+      "LATENT"
+    ],
+    [
+      10,
+      8,
+      0,
+      9,
+      0,
+      "IMAGE"
+    ]
+  ],
+  "groups": [
+    {
+      "title": "MODEL / CLIP / VAE DECOUPLED LOADERS",
+      "bounding": [
+        20,
+        40,
+        360,
+        320
+      ],
+      "color": "#3f789e"
+    },
+    {
+      "title": "CONDITIONING & PROMPTS",
+      "bounding": [
+        380,
+        20,
+        480,
+        720
+      ],
+      "color": "#638a55"
+    },
+    {
+      "title": "SAMPLER & TILED VAE DECODE",
+      "bounding": [
+        870,
+        60,
+        630,
+        360
+      ],
+      "color": "#8c564b"
+    }
+  ],
+  "config": {},
+  "extra": {
+    "author": "Mpho Madikwane Engineering System",
+    "date": "2026-10-05"
+  },
+  "version": 0.4
+}

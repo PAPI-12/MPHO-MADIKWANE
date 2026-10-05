@@ -1,0 +1,61 @@
+# ==============================================================================
+# KOHYA_SS / SD-SCRIPTS LoRA CONFIGURATION FOR MACBOOK NEO (A18 PRO - 8GB RAM)
+# Tuned for absolute memory stability, zero kernel panics, and photorealism
+# ==============================================================================
+
+[general]
+enable_bucket = true
+min_bucket_reso = 384
+max_bucket_reso = 768
+bucket_reso_steps = 64
+bucket_no_upscale = true
+
+[[datasets]]
+resolution = 512
+batch_size = 1
+max_train_epochs = 10
+
+  [[datasets.subsets]]
+  image_dir = "../../datasets/processed"
+  caption_extension = ".txt"
+  num_repeats = 10
+  shuffle_caption = true
+  keep_tokens = 1
+
+[model_arguments]
+pretrained_model_name_or_path = "../../models/checkpoints/realisticVisionV60B1_v60B1VAE.safetensors"
+v2 = false
+v_parameterization = false
+
+[optimizer_arguments]
+optimizer_type = "AdamW"
+learning_rate = 0.0001
+unet_lr = 0.0001
+text_encoder_lr = 0.00005
+lr_scheduler = "cosine_with_restarts"
+lr_warmup_steps = 100
+lr_restart_cycles = 1
+
+[training_arguments]
+output_dir = "../../models/loras"
+output_name = "mpho_madikwane_photorealism_v1"
+save_precision = "fp16"
+save_model_as = "safetensors"
+save_every_n_epochs = 2
+save_state = false
+max_train_steps = 1600
+gradient_accumulation_steps = 4
+gradient_checkpointing = true
+mixed_precision = "fp16"
+clip_skip = 1
+seed = 42
+
+[network_arguments]
+network_module = "networks.lora"
+network_dim = 16        # Rank r = 16 (high facial fidelity, modest memory)
+network_alpha = 16      # Alpha = 16 (1:1 scaling prevents numerical divergence)
+network_dropout = 0.05  # Slight dropout prevents memorizing specific backgrounds
+
+[logging_arguments]
+log_tracker_name = "tensorboard"
+logging_dir = "../../training/logs"

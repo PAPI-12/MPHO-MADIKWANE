@@ -1,0 +1,75 @@
+{
+  "runtime_type": "Container / Agent Workspace (Linux)",
+  "system_os": "Linux",
+  "os_release": "6.1.158+",
+  "os_version": "#1 SMP PREEMPT_DYNAMIC Mon May 11 18:48:24 UTC 2026",
+  "machine_arch": "x86_64",
+  "processor": "",
+  "python_version": "3.11.2",
+  "python_executable": "/usr/bin/python3",
+  "is_apple_silicon": false,
+  "apple_chip_model": "Unknown",
+  "total_ram_gb": 3.85,
+  "available_ram_gb": 1.7,
+  "disk_total_gb": 20.34,
+  "disk_available_gb": 16.18,
+  "mps_available": false,
+  "cuda_available": false,
+  "comfyui_installed": false,
+  "target_profile": {},
+  "pytorch_version": "Not Installed",
+  "host_cpu_model": "Intel(R) Xeon(R) Processor @ 2.60GHz",
+  "macbook_neo_specifications": {
+    "model_name": "MacBook Neo (13-inch, 2026)",
+    "chip": "Apple A18 Pro",
+    "cpu_cores": "6-core (2 Performance Everest @ 4.04GHz + 4 Efficiency Sawtooth @ 2.2GHz)",
+    "gpu_cores": "5-core GPU with hardware ray tracing & dynamic caching",
+    "neural_engine": "16-core NPU (35 TOPS)",
+    "unified_memory_gb": 8.0,
+    "memory_bandwidth_gbs": 60.0,
+    "target_os": "macOS 26 Tahoe / macOS 27 Golden Gate",
+    "metal_version": "Metal 3",
+    "safe_unified_memory_budget_gb": {
+      "macos_and_services": 2.5,
+      "comfyui_model_weights_max": 2.4,
+      "comfyui_activations_and_latents": 1.2,
+      "vae_tiled_decode_peak": 1.1,
+      "total_peak_allocated": 7.2,
+      "safety_headroom_gb": 0.8
+    },
+    "model_compatibility_matrix": {
+      "SD1.5 Photorealism (Realistic Vision 6.0 / EpiCRealism)": {
+        "weights_gb": 2.0,
+        "peak_ram_gb": 3.8,
+        "status": "RECOMMENDED - 100% STABLE",
+        "risk_of_oom": "Near Zero",
+        "typical_speed": "12-18 sec/image",
+        "recommended_res": "512x768 or 768x768"
+      },
+      "SDXL Quantized GGUF (Q4_K_M)": {
+        "weights_gb": 3.8,
+        "peak_ram_gb": 5.6,
+        "status": "SUPPORTED IN QUALITY MODE (--lowvram, tiled VAE)",
+        "risk_of_oom": "Low if tiled VAE enabled",
+        "typical_speed": "35-50 sec/image",
+        "recommended_res": "832x1152"
+      },
+      "SDXL Full FP16 (Base 6.6GB + Refiner)": {
+        "weights_gb": 6.6,
+        "peak_ram_gb": 8.4,
+        "status": "UNSAFE ON 8GB - SWAP THRASHING & CRASHES",
+        "risk_of_oom": "Extreme / Kernel freeze",
+        "typical_speed": ">120 sec/image (paging)",
+        "recommended_res": "Not recommended"
+      },
+      "Flux.1-dev / Schnell FP16 (24GB) / Q4 (12GB)": {
+        "weights_gb": 12.0,
+        "peak_ram_gb": 14.5,
+        "status": "CRITICAL FAILURE - EXCEEDS 8GB PHYSICAL LIMIT",
+        "risk_of_oom": "Immediate EXC_RESOURCE / kill -9",
+        "typical_speed": "Unusable",
+        "recommended_res": "Requires >= 16GB-24GB Mac Studio / Pro"
+      }
+    }
+  }
+}

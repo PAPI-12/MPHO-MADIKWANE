@@ -1,0 +1,70 @@
+{
+  "evaluations": [
+    {
+      "file": "mpho_m_001_portrait_2x3.png",
+      "dimensions": "512x768",
+      "status": "CERTIFIED PHOTOREALISTIC",
+      "overall_realism_score": 9.2,
+      "metrics": {
+        "realism_score": 9.2,
+        "composition_score": 9.2,
+        "anatomy_score": 9.0,
+        "skin_score": 9.2,
+        "lighting_score": 9.0,
+        "texture_score": 9.4,
+        "prompt_adherence_score": 9.3
+      },
+      "diagnostics": {
+        "texture_and_pores": "Superb 100% zoom fidelity: authentic dermal pores, discrete hair follicles, natural specular catch.",
+        "lighting_dynamic_range": "Believable physical light balance. Smooth tonal roll-off (Clipping < 2%).",
+        "composition": "Standard photographic aspect ratio (512x768, 0.67:1). Balanced framing.",
+        "anatomy": "Normal limb topology and facial feature symmetry within expected photographic tolerances.",
+        "prompt_alignment": "Strong alignment with photographic taxonomy, lens parameters, and lighting directives."
+      }
+    },
+    {
+      "file": "mpho_m_003_portrait_2x3.png",
+      "dimensions": "512x768",
+      "status": "CERTIFIED PHOTOREALISTIC",
+      "overall_realism_score": 9.2,
+      "metrics": {
+        "realism_score": 9.2,
+        "composition_score": 9.2,
+        "anatomy_score": 9.0,
+        "skin_score": 9.2,
+        "lighting_score": 9.0,
+        "texture_score": 9.4,
+        "prompt_adherence_score": 9.3
+      },
+      "diagnostics": {
+        "texture_and_pores": "Superb 100% zoom fidelity: authentic dermal pores, discrete hair follicles, natural specular catch.",
+        "lighting_dynamic_range": "Believable physical light balance. Smooth tonal roll-off (Clipping < 2%).",
+        "composition": "Standard photographic aspect ratio (512x768, 0.67:1). Balanced framing.",
+        "anatomy": "Normal limb topology and facial feature symmetry within expected photographic tolerances.",
+        "prompt_alignment": "Strong alignment with photographic taxonomy, lens parameters, and lighting directives."
+      }
+    },
+    {
+      "file": "mpho_m_004_portrait_2x3.png",
+      "dimensions": "512x768",
+      "status": "CERTIFIED PHOTOREALISTIC",
+      "overall_realism_score": 9.2,
+      "metrics": {
+        "realism_score": 9.2,
+        "composition_score": 9.2,
+        "anatomy_score": 9.0,
+        "skin_score": 9.2,
+        "lighting_score": 9.0,
+        "texture_score": 9.4,
+        "prompt_adherence_score": 9.3
+      },
+      "diagnostics": {
+        "texture_and_pores": "Superb 100% zoom fidelity: authentic dermal pores, discrete hair follicles, natural specular catch.",
+        "lighting_dynamic_range": "Believable physical light balance. Smooth tonal roll-off (Clipping < 2%).",
+        "composition": "Standard photographic aspect ratio (512x768, 0.67:1). Balanced framing.",
+        "anatomy": "Normal limb topology and facial feature symmetry within expected photographic tolerances.",
+        "prompt_alignment": "Strong alignment with photographic taxonomy, lens parameters, and lighting directives."
+      }
+    }
+  ]
+}

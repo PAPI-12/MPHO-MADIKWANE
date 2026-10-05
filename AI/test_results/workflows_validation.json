@@ -1,0 +1,237 @@
+{
+  "summary": {
+    "total": 12,
+    "all_passed": true
+  },
+  "audits": [
+    {
+      "file": "01_simple_generation_sd15_photo.json",
+      "title": "Simple Mode - SD1.5 Photorealism",
+      "valid": true,
+      "node_count": 7,
+      "link_count": 9,
+      "node_types": [
+        "KSampler",
+        "SaveImage",
+        "CheckpointLoaderSimple",
+        "EmptyLatentImage",
+        "VAEDecode",
+        "CLIPTextEncode"
+      ],
+      "issues": [],
+      "warnings": []
+    },
+    {
+      "file": "02_pro_generation_modular_sd15.json",
+      "title": "Pro Mode - Decoupled MODEL / CLIP / VAE",
+      "valid": true,
+      "node_count": 9,
+      "link_count": 10,
+      "node_types": [
+        "KSampler",
+        "SaveImage",
+        "CheckpointLoaderSimple",
+        "EmptyLatentImage",
+        "VAEDecodeTiled",
+        "CLIPTextEncode",
+        "VAELoader",
+        "CLIPSetLastLayer"
+      ],
+      "issues": [],
+      "warnings": []
+    },
+    {
+      "file": "03_pro_generation_sdxl_quantized.json",
+      "title": "Pro Mode - SDXL Quantized GGUF (8GB Safe)",
+      "valid": true,
+      "node_count": 9,
+      "link_count": 9,
+      "node_types": [
+        "KSampler",
+        "SaveImage",
+        "EmptyLatentImage",
+        "DualCLIPLoaderGGUF",
+        "VAEDecodeTiled",
+        "CLIPTextEncode",
+        "VAELoader",
+        "UnetLoaderGGUF"
+      ],
+      "issues": [],
+      "warnings": []
+    },
+    {
+      "file": "04_mode_a_face_identity_reference.json",
+      "title": "Mode A - Face / Identity Reference",
+      "valid": true,
+      "node_count": 10,
+      "link_count": 12,
+      "node_types": [
+        "KSampler",
+        "SaveImage",
+        "CheckpointLoaderSimple",
+        "IPAdapterFaceID",
+        "EmptyLatentImage",
+        "VAEDecode",
+        "CLIPTextEncode",
+        "LoadImage",
+        "IPAdapterModelLoader"
+      ],
+      "issues": [],
+      "warnings": []
+    },
+    {
+      "file": "05_mode_b_style_reference.json",
+      "title": "Mode B - Style Reference",
+      "valid": true,
+      "node_count": 10,
+      "link_count": 12,
+      "node_types": [
+        "KSampler",
+        "SaveImage",
+        "CheckpointLoaderSimple",
+        "CLIPVisionLoader",
+        "EmptyLatentImage",
+        "VAEDecode",
+        "CLIPTextEncode",
+        "LoadImage",
+        "IPAdapterStyleTransfer"
+      ],
+      "issues": [],
+      "warnings": []
+    },
+    {
+      "file": "06_mode_c_subject_reference.json",
+      "title": "Mode C - Subject Reference (Wardrobe / Silhouette)",
+      "valid": true,
+      "node_count": 10,
+      "link_count": 12,
+      "node_types": [
+        "KSampler",
+        "SaveImage",
+        "CheckpointLoaderSimple",
+        "IPAdapterFaceID",
+        "EmptyLatentImage",
+        "VAEDecode",
+        "CLIPTextEncode",
+        "LoadImage",
+        "IPAdapterModelLoader"
+      ],
+      "issues": [],
+      "warnings": []
+    },
+    {
+      "file": "07_mode_d_composition_reference.json",
+      "title": "Mode D - Composition Reference (ControlNet)",
+      "valid": true,
+      "node_count": 10,
+      "link_count": 12,
+      "node_types": [
+        "KSampler",
+        "SaveImage",
+        "CheckpointLoaderSimple",
+        "ControlNetApply",
+        "EmptyLatentImage",
+        "ControlNetLoader",
+        "VAEDecode",
+        "CLIPTextEncode",
+        "LoadImage"
+      ],
+      "issues": [],
+      "warnings": []
+    },
+    {
+      "file": "08_personal_lora_workflow.json",
+      "title": "Personal LoRA Workflow",
+      "valid": true,
+      "node_count": 8,
+      "link_count": 11,
+      "node_types": [
+        "KSampler",
+        "SaveImage",
+        "CheckpointLoaderSimple",
+        "EmptyLatentImage",
+        "VAEDecode",
+        "CLIPTextEncode",
+        "LoraLoader"
+      ],
+      "issues": [],
+      "warnings": []
+    },
+    {
+      "file": "09_non_destructive_upscale_refinement.json",
+      "title": "Non-Destructive Upscale & Latent Refinement",
+      "valid": true,
+      "node_count": 10,
+      "link_count": 13,
+      "node_types": [
+        "UpscaleModelLoader",
+        "VAEEncode",
+        "ImageUpscaleWithModel",
+        "KSampler",
+        "CheckpointLoaderSimple",
+        "SaveImage",
+        "VAEDecodeTiled",
+        "CLIPTextEncode",
+        "LoadImage"
+      ],
+      "issues": [],
+      "warnings": []
+    },
+    {
+      "file": "10_low_memory_profile_workflow.json",
+      "title": "Performance Profile: Low-Memory Mode (Peak RAM < 2.4 GB)",
+      "valid": true,
+      "node_count": 9,
+      "link_count": 10,
+      "node_types": [
+        "KSampler",
+        "SaveImage",
+        "CheckpointLoaderSimple",
+        "EmptyLatentImage",
+        "VAEDecodeTiled",
+        "CLIPTextEncode",
+        "VAELoader",
+        "CLIPSetLastLayer"
+      ],
+      "issues": [],
+      "warnings": []
+    },
+    {
+      "file": "11_quality_profile_workflow.json",
+      "title": "Performance Profile: Quality Mode (Two-Pass High-Fidelity)",
+      "valid": true,
+      "node_count": 10,
+      "link_count": 13,
+      "node_types": [
+        "UpscaleModelLoader",
+        "VAEEncode",
+        "ImageUpscaleWithModel",
+        "KSampler",
+        "CheckpointLoaderSimple",
+        "SaveImage",
+        "VAEDecodeTiled",
+        "CLIPTextEncode",
+        "LoadImage"
+      ],
+      "issues": [],
+      "warnings": []
+    },
+    {
+      "file": "12_fast_preview_workflow.json",
+      "title": "Performance Profile: Fast Mode (Rapid Ideation)",
+      "valid": true,
+      "node_count": 7,
+      "link_count": 9,
+      "node_types": [
+        "KSampler",
+        "SaveImage",
+        "CheckpointLoaderSimple",
+        "EmptyLatentImage",
+        "VAEDecode",
+        "CLIPTextEncode"
+      ],
+      "issues": [],
+      "warnings": []
+    }
+  ]
+}

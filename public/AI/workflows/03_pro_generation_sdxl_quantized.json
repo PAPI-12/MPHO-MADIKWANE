@@ -1,0 +1,386 @@
+{
+  "title": "Pro Mode - SDXL Quantized GGUF (8GB Safe)",
+  "description": "SDXL execution using 4-bit quantization and Tiled VAE.",
+  "target_hardware": "MacBook Neo (Apple A18 Pro - 8GB Unified Memory)",
+  "mps_optimized": true,
+  "last_node_id": 9,
+  "last_link_id": 9,
+  "nodes": [
+    {
+      "id": 1,
+      "type": "UnetLoaderGGUF",
+      "pos": [
+        40,
+        80
+      ],
+      "size": [
+        320,
+        80
+      ],
+      "order": 0,
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "MODEL",
+          "type": "MODEL",
+          "links": [
+            1
+          ],
+          "slot_index": 0
+        }
+      ],
+      "widgets_values": [
+        "sdxl_base_q4_k_m.gguf"
+      ]
+    },
+    {
+      "id": 2,
+      "type": "DualCLIPLoaderGGUF",
+      "pos": [
+        40,
+        200
+      ],
+      "size": [
+        320,
+        100
+      ],
+      "order": 1,
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "CLIP",
+          "type": "CLIP",
+          "links": [
+            2,
+            3
+          ],
+          "slot_index": 0
+        }
+      ],
+      "widgets_values": [
+        "clip_l.safetensors",
+        "t5xxl_fp8_e4m3fn.safetensors",
+        "sdxl"
+      ]
+    },
+    {
+      "id": 3,
+      "type": "VAELoader",
+      "pos": [
+        40,
+        340
+      ],
+      "size": [
+        320,
+        60
+      ],
+      "order": 2,
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "VAE",
+          "type": "VAE",
+          "links": [
+            7
+          ],
+          "slot_index": 0
+        }
+      ],
+      "widgets_values": [
+        "sdxl_vae_fp16_fix.safetensors"
+      ]
+    },
+    {
+      "id": 4,
+      "type": "CLIPTextEncode",
+      "pos": [
+        410,
+        80
+      ],
+      "size": [
+        440,
+        180
+      ],
+      "order": 3,
+      "inputs": [
+        {
+          "name": "clip",
+          "type": "CLIP",
+          "link": 2
+        }
+      ],
+      "outputs": [
+        {
+          "name": "CONDITIONING",
+          "type": "CONDITIONING",
+          "links": [
+            4
+          ],
+          "slot_index": 0
+        }
+      ],
+      "widgets_values": [
+        "Photorealistic cinematic portrait of a South African male model, natural skin pores, realistic beard stubble, wearing bespoke earth-toned tailored blazer, soft atmospheric studio lighting, shot on 85mm f/1.4, Kodak Portra 400 film tones, highly detailed, master photography."
+      ]
+    },
+    {
+      "id": 5,
+      "type": "CLIPTextEncode",
+      "pos": [
+        410,
+        300
+      ],
+      "size": [
+        440,
+        160
+      ],
+      "order": 4,
+      "inputs": [
+        {
+          "name": "clip",
+          "type": "CLIP",
+          "link": 3
+        }
+      ],
+      "outputs": [
+        {
+          "name": "CONDITIONING",
+          "type": "CONDITIONING",
+          "links": [
+            5
+          ],
+          "slot_index": 0
+        }
+      ],
+      "widgets_values": [
+        "plastic, waxy, cartoon, 3d, anime, deformed, mutated, extra fingers, blurry, lowres"
+      ]
+    },
+    {
+      "id": 6,
+      "type": "EmptyLatentImage",
+      "pos": [
+        410,
+        500
+      ],
+      "size": [
+        315,
+        106
+      ],
+      "order": 5,
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "LATENT",
+          "type": "LATENT",
+          "links": [
+            6
+          ],
+          "slot_index": 0
+        }
+      ],
+      "widgets_values": [
+        832,
+        1152,
+        1
+      ]
+    },
+    {
+      "id": 7,
+      "type": "KSampler",
+      "pos": [
+        900,
+        100
+      ],
+      "size": [
+        315,
+        262
+      ],
+      "order": 6,
+      "inputs": [
+        {
+          "name": "model",
+          "type": "MODEL",
+          "link": 1
+        },
+        {
+          "name": "positive",
+          "type": "CONDITIONING",
+          "link": 4
+        },
+        {
+          "name": "negative",
+          "type": "CONDITIONING",
+          "link": 5
+        },
+        {
+          "name": "latent_image",
+          "type": "LATENT",
+          "link": 6
+        }
+      ],
+      "outputs": [
+        {
+          "name": "LATENT",
+          "type": "LATENT",
+          "links": [
+            8
+          ],
+          "slot_index": 0
+        }
+      ],
+      "widgets_values": [
+        333,
+        "randomize",
+        30,
+        5.0,
+        "dpmpp_2m",
+        "karras",
+        1.0
+      ]
+    },
+    {
+      "id": 8,
+      "type": "VAEDecodeTiled",
+      "pos": [
+        1260,
+        100
+      ],
+      "size": [
+        220,
+        80
+      ],
+      "order": 7,
+      "inputs": [
+        {
+          "name": "samples",
+          "type": "LATENT",
+          "link": 8
+        },
+        {
+          "name": "vae",
+          "type": "VAE",
+          "link": 7
+        }
+      ],
+      "outputs": [
+        {
+          "name": "IMAGE",
+          "type": "IMAGE",
+          "links": [
+            9
+          ],
+          "slot_index": 0
+        }
+      ],
+      "widgets_values": [
+        512
+      ]
+    },
+    {
+      "id": 9,
+      "type": "SaveImage",
+      "pos": [
+        1520,
+        100
+      ],
+      "size": [
+        380,
+        460
+      ],
+      "order": 8,
+      "inputs": [
+        {
+          "name": "images",
+          "type": "IMAGE",
+          "link": 9
+        }
+      ],
+      "outputs": [],
+      "widgets_values": [
+        "MacBookNeo_SDXL_GGUF"
+      ]
+    }
+  ],
+  "links": [
+    [
+      1,
+      1,
+      0,
+      7,
+      0,
+      "MODEL"
+    ],
+    [
+      2,
+      2,
+      0,
+      4,
+      0,
+      "CLIP"
+    ],
+    [
+      3,
+      2,
+      0,
+      5,
+      0,
+      "CLIP"
+    ],
+    [
+      4,
+      4,
+      0,
+      7,
+      1,
+      "CONDITIONING"
+    ],
+    [
+      5,
+      5,
+      0,
+      7,
+      2,
+      "CONDITIONING"
+    ],
+    [
+      6,
+      6,
+      0,
+      7,
+      3,
+      "LATENT"
+    ],
+    [
+      7,
+      3,
+      0,
+      8,
+      1,
+      "VAE"
+    ],
+    [
+      8,
+      7,
+      0,
+      8,
+      0,
+      "LATENT"
+    ],
+    [
+      9,
+      8,
+      0,
+      9,
+      0,
+      "IMAGE"
+    ]
+  ],
+  "groups": [],
+  "config": {},
+  "extra": {
+    "author": "Mpho Madikwane Engineering System",
+    "date": "2026-10-05"
+  },
+  "version": 0.4
+}
